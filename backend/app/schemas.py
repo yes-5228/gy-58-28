@@ -23,3 +23,6 @@ class BookingCreate(BaseModel):
     slot_id: int
     member_id: int = 1
     contact_name: str = Field(min_length=1)
+    racket_rental: bool = False
+    invoice_needed: bool = False
+    special_notes: str = ""

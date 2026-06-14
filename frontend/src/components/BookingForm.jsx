@@ -1,6 +1,20 @@
 import { CreditCard } from 'lucide-react'
 
-export function BookingForm({ members, selectedSlot, contactName, memberId, onContactName, onMemberId, onSubmit }) {
+export function BookingForm({
+  members,
+  selectedSlot,
+  contactName,
+  memberId,
+  racketRental,
+  invoiceNeeded,
+  specialNotes,
+  onContactName,
+  onMemberId,
+  onRacketRental,
+  onInvoiceNeeded,
+  onSpecialNotes,
+  onSubmit,
+}) {
   const member = members.find((item) => item.id === Number(memberId))
   const amount = selectedSlot && member ? (selectedSlot.price * member.discount_rate).toFixed(2) : '0.00'
 
@@ -31,6 +45,33 @@ export function BookingForm({ members, selectedSlot, contactName, memberId, onCo
           <span>应付金额</span>
           <strong>¥{amount}</strong>
         </div>
+        <div className="checkbox-group">
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={racketRental}
+              onChange={(event) => onRacketRental(event.target.checked)}
+            />
+            <span>球拍租借</span>
+          </label>
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={invoiceNeeded}
+              onChange={(event) => onInvoiceNeeded(event.target.checked)}
+            />
+            <span>发票需求</span>
+          </label>
+        </div>
+        <label className="full-width">
+          特殊说明
+          <textarea
+            value={specialNotes}
+            onChange={(event) => onSpecialNotes(event.target.value)}
+            placeholder="请输入特殊需求或说明（选填）"
+            rows="3"
+          />
+        </label>
         <button className="primary-action" type="submit" disabled={!selectedSlot || !contactName.trim()}>
           提交预约
         </button>

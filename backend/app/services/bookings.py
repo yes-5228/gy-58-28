@@ -37,6 +37,9 @@ def create_booking(payload: BookingCreate) -> Booking:
         payable_amount=payable,
         status="pending",
         created_at=datetime.now(timezone.utc).isoformat(),
+        racket_rental=payload.racket_rental,
+        invoice_needed=payload.invoice_needed,
+        special_notes=payload.special_notes,
     )
     store.bookings[booking_id] = booking
     store.time_slots[slot.id] = slot.model_copy(update={"status": "booked"})

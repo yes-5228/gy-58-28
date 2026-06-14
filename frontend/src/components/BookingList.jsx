@@ -1,4 +1,4 @@
-import { BadgeCheck, CircleX, WalletCards } from 'lucide-react'
+import { BadgeCheck, CircleX, WalletCards, Receipt, TennisBall } from 'lucide-react'
 
 export function BookingList({ bookings, courtsById, onSettle, onCancel }) {
   return (
@@ -24,6 +24,25 @@ export function BookingList({ bookings, courtsById, onSettle, onCancel }) {
                 <strong>实付 ¥{booking.payable_amount.toFixed(2)}</strong>
               </div>
               <div className={`status-pill ${booking.status}`}>{booking.status}</div>
+              {(booking.racket_rental || booking.invoice_needed || booking.special_notes) && (
+                <div className="booking-notes">
+                  {booking.racket_rental && (
+                    <span className="note-tag">
+                      <TennisBall size={12} />
+                      球拍租借
+                    </span>
+                  )}
+                  {booking.invoice_needed && (
+                    <span className="note-tag">
+                      <Receipt size={12} />
+                      发票需求
+                    </span>
+                  )}
+                  {booking.special_notes && (
+                    <span className="note-text">{booking.special_notes}</span>
+                  )}
+                </div>
+              )}
               <div className="row-actions">
                 <button type="button" onClick={() => onSettle(booking.id)} disabled={booking.status !== 'pending'} title="结算">
                   <BadgeCheck size={16} />

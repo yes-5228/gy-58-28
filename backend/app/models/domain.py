@@ -37,3 +37,6 @@ class Booking(BaseModel):
     payable_amount: float
     status: str = "pending"
     created_at: str
+    racket_rental: bool = False
+    invoice_needed: bool = False
+    special_notes: str = ""

@@ -265,13 +265,49 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
   width: 100%;
   min-height: 42px;
   padding: 0 12px;
   border: 1px solid #d4dfd9;
   border-radius: 6px;
   background: #fff;
+}
+
+textarea {
+  min-height: 80px;
+  padding: 10px 12px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 20px;
+  padding: 4px 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #475852;
+  font-size: 13px;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto;
+  min-height: auto;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.full-width {
+  grid-column: 1 / -1;
 }
 
 .settlement-box {
@@ -317,6 +353,39 @@ select {
   min-height: 74px;
   padding: 12px;
   border: 1px solid #e1e9e4;
+}
+
+.booking-notes {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px dashed #d8e1dc;
+  margin-top: 4px;
+}
+
+.note-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f0f7f4;
+  color: #0f5d4b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.note-text {
+  padding: 6px 10px;
+  background: #fff8ee;
+  border-left: 3px solid #cf7d2a;
+  color: #62401f;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 4px;
 }
 
 .amount-block {
@@ -416,5 +485,10 @@ select {
 
   .amount-block {
     text-align: left;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    gap: 10px;
   }
 }

@@ -16,6 +16,9 @@ export function Dashboard() {
   const [selectedSlot, setSelectedSlot] = useState(null)
   const [contactName, setContactName] = useState('')
   const [memberId, setMemberId] = useState('1')
+  const [racketRental, setRacketRental] = useState(false)
+  const [invoiceNeeded, setInvoiceNeeded] = useState(false)
+  const [specialNotes, setSpecialNotes] = useState('')
   const [message, setMessage] = useState('')
 
   async function loadBaseData() {
@@ -69,9 +72,15 @@ export function Dashboard() {
         slot_id: selectedSlot.id,
         member_id: Number(memberId),
         contact_name: contactName.trim(),
+        racket_rental: racketRental,
+        invoice_needed: invoiceNeeded,
+        special_notes: specialNotes.trim(),
       })
       setMessage('预约已提交，订单待结算')
       setContactName('')
+      setRacketRental(false)
+      setInvoiceNeeded(false)
+      setSpecialNotes('')
       await refresh()
     } catch (error) {
       setMessage(error.message)
@@ -117,8 +126,14 @@ export function Dashboard() {
             selectedSlot={selectedSlot}
             contactName={contactName}
             memberId={memberId}
+            racketRental={racketRental}
+            invoiceNeeded={invoiceNeeded}
+            specialNotes={specialNotes}
             onContactName={setContactName}
             onMemberId={setMemberId}
+            onRacketRental={setRacketRental}
+            onInvoiceNeeded={setInvoiceNeeded}
+            onSpecialNotes={setSpecialNotes}
             onSubmit={handleCreateBooking}
           />
           <BookingList
